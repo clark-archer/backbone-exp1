@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <div id="points"></div>
+    <form>
+      <input id="newPointButton" type="button" value="New Point" />
+    </form>
+    <script src="underscore.js" type="text/javascript"></script>
+    <script src="backbone.js" type="text/javascript"></script>
+    <script src="jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      Point = Backbone.Model.extend({
+          randomCoord: function() { 
+              return Math.random() * 100 - 50;
+          },
+          initialize: function() {
+              this.x = this.randomCoord();
+              this.y = this.randomCoord();
+          }
+      });
+      $('#newPointButton').click(function() {
+          var point = new Point();
+      });
+    </script>
+  </body>
+</html>
