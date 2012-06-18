@@ -11,7 +11,7 @@ $(function() {
     ListView = Backbone.View.extend({
         initialize: function(options, points) { 
             this.points = points;
-            this.points.on("add", this.render, this);
+            this.points.on("add remove", this.render, this);
             this.render();
         },
         render: function() { 
@@ -31,7 +31,7 @@ $(function() {
     SummaryView = Backbone.View.extend({
         initialize: function(options, points) {
             this.points = points;
-            this.points.on("add", this.render, this);
+            this.points.on("add remove", this.render, this);
             this.render();
         },
         render: function() {
@@ -58,11 +58,17 @@ $(function() {
     var listView = new ListView({ el: $("#points") }, points);
     var summaryView = new SummaryView({ el: $("#summary") }, points);
 
-    $('#newPointButton').click(function() {
+    $('#addPointButton').click(function() {
         var point = new Point({ 
             x: Math.random() * 100 - 50,
             y: Math.random() * 100 - 50 });
         points.add(point);
+    });
+    $('#deletePointButton').click(function() {
+        if (points.length < 1) { 
+            return;
+        }
+        points.remove(points.at(Math.floor(Math.random() * points.length)));
     });
 
 });
