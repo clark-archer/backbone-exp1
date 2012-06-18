@@ -48,6 +48,18 @@ $(function() {
     });
 
     var points = new PointList();
+    points.comparator = function(a, b) {
+        var ax = a.get("x"),
+            bx = b.get("x");
+        if (ax < bx) { return -1; }
+        else if (bx < ax) { return 1; }
+        var ay = a.get("y"),
+            by = b.get("y");
+        if (ay < by) { return -1; }
+        else if (by < ay) { return 1; }
+        return 0;
+    };
+
     var listView = new ListView({ el: $("#points") }, points);
     var summaryView = new SummaryView({ el: $("#summary") }, points);
 
