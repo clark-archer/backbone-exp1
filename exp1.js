@@ -8,11 +8,6 @@ $(function() {
         }
     });
 
-    PointList = Backbone.Collection.extend({
-        initialize: function(models, options) {
-        }
-    });
-
     ListView = Backbone.View.extend({
         initialize: function(options, points) { 
             this.points = points;
@@ -47,7 +42,7 @@ $(function() {
         }
     });
 
-    var points = new PointList();
+    var points = new Backbone.Collection(); 
     points.comparator = function(a, b) {
         var ax = a.get("x"),
             bx = b.get("x");
